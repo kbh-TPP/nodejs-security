@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>XSS</title>
+</head>
+
+<body>
+
+    <script src='./jquery.min.js'></script>
+
+
+    <h1>这是一个XSS页面的实例构造器</h1>
+    <h2>这里将构造常用的Xss的实例，一个是处理过的，一个是没有处理的XSS的攻击。</h2>
+
+    <div>
+        <h2>Reflected XSS</h2>
+        <span class="xss-one" id='xss1'></span>
+        <span class="xss-one" id='xss2'></span>
+
+    </div>
+
+
+    <div>
+        <h2>Stored XSS</h2>
+        <textarea name=""></textarea>
+
+    </div>
+
+    <script>
+        //   1. Reflected XSS（基于反射的XSS攻击）
+        function Reflected() {
+            $.ajax({
+                type: "get",
+                url: '/xss-1/reflected/wrong?xss1=<script>alert("this is a XSS error! ")<\/script>',
+                success: function(msg) {
+                    $("#xss1").html(msg);
+                }
+            });
+
+
+            $.ajax({
+                type: "get",
+                url: '/xss-1/reflected/right?xss1=<script>alert("this is a handle XSS problem! ")<\/script>',
+                success: function(msg) {
+                    $("#xss2").html(msg);
+                }
+            });
+        }
+
+        Reflected();
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
