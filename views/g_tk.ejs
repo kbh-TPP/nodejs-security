@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>csrf测试提交</title>
+</head>
+
+<style>
+    a {
+        font-size: 20px;
+    }
+</style>
+
+<body>
+
+    <div>
+        csrf测试提交
+    </div>
+
+    <h2 id='g_tk'>
+        <a href="/g_tk_have?g_tk=<%- g_tk %>">g_tk</a>
+    </h2>
+
+    <h2 id='ng_tk'>
+        <a href="/ng_tk_have"> don`t have g_tk  </a>
+    </h2>
+
+</body>
+
+</html>
