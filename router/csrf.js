@@ -39,7 +39,7 @@ CSRF.formPage_process = function(req, res) {
  * 使用 g_tk 的方式，进行防卫。
  * 客户端和前端都采用一种伪随机的方式，进行 cookie 转 token，
  * csrf 的前提是没有xss，http劫持。如果有了xss和http劫持，那csrf就没有意义了。
- * 复合上面的需求，就保证了cookie是安全的，那么，既然不知道cookie的具体值，
+ * 符合上面的需求，就保证了cookie是安全的，那么，既然不知道cookie的具体值，
  * 也就无法知道 g_tk 的值了。因此，就可以作为 csrf 的防护。
  */
 CSRF.g_tk_demo = function(req, res) {
@@ -51,12 +51,6 @@ CSRF.g_tk_demo = function(req, res) {
     }
 
     res.render('g_tk', { g_tk: g_tk })
-
-
-    // res.json({
-    //     g_tk: g_tk,
-    //     status: 'ok'
-    // });
 }
 
 /**

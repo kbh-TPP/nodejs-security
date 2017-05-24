@@ -8,7 +8,7 @@ const mysql = require("mysql");
 const querystring = require('querystring');
 
 let router = express.Router();
-let sql = require('./../model/userSqlMap.js');
+let sql = require('./../module/userSqlMap.js');
 
 // 向前台返回JSON方法的简单封装
 function jsonWrite(res, ret) {
