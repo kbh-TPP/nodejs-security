@@ -16,8 +16,12 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 // setup router and callback
 // const Router = require('./router/index.js');
 const XSS = require("./../router/xss.js");
-const CSRF = require('./../router/csrf.js');
+// const CSRF = require('./../router/csrf.js');
+
+const CSRF = require('./../router/csrfClass');
+
 const SQL = require('./../router/sql.js');
+const Cache = require('./../router/shareCache');    // 共享缓存
 
 
 function Config() {}
@@ -29,7 +33,7 @@ Config.isTest = process.env.NODE_ENV == 'test';
 Config.isReal = process.env.NODE_ENV == 'production';
 
 
-
+var csrfobj = new CSRF();
 
 // ----------------------------------------------------------------------------------------------------------------------------
 
@@ -107,19 +111,39 @@ Config.getDynamicConfig = function() {
     return {
         '/xss-1/reflected/wrong': XSS.Reflected_wrong,
         '/xss-1/reflected/right': XSS.Reflected_right,
-        'csrf-form': {
-            '/formPage/form': CSRF.formPage_form,
-            '/formData/process': CSRF.formPage_process,
-        },
 
-        '/g_tk_demo': CSRF.g_tk_demo,
+        // 'csrf-form': {
+        //     '/formPage/form': CSRF.formPage_form,
+        //     '/formData/process': CSRF.formPage_process,
+        // },
+        // '/g_tk_demo': CSRF.g_tk_demo,
+        //
+        // "g-tk": {
+        //     "/g_tk_have": CSRF.g_tk_have,
+        //     "/ng_tk_have": CSRF.ng_tk_have,
+        // },
+
+        //
+        // 'csrf-form': {
+        //     '/formPage/form': csrfobj.formPage_form,
+        //     '/formData/process': csrfobj.formPage_process,
+        // },
+
+        '/g_tk_demo': csrfobj.g_tk_demo,
 
         "g-tk": {
-            "/g_tk_have": CSRF.g_tk_have,
-            "/ng_tk_have": CSRF.ng_tk_have,
+            "/g_tk_have": csrfobj.g_tk_have,
+            "/ng_tk_have": csrfobj.ng_tk_have,
         },
 
-        // 'add': SQL.a
+        // 'sql': {
+        //     'add':
+        // }
+        'cache' : {
+            "/cacheget": Cache.get,
+            "/cacheset": Cache.set
+        }
+
     };
 };
 

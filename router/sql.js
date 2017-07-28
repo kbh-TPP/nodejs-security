@@ -6,6 +6,8 @@
 module.exports = dbUser;
 const mysql = require("mysql");
 const querystring = require('querystring');
+const express = require('express');
+
 
 let router = express.Router();
 let sql = require('./../module/userSqlMap.js');
@@ -21,6 +23,17 @@ function jsonWrite(res, ret) {
         res.json(ret);
     }
 }
+
+// // DB 的操作类
+// function dbUser() {};
+
+
+
+// // 公用方法
+// dbUser.add = function() {
+
+// };
+
 
 
 /**

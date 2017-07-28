@@ -4,29 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<script src="./js/zepto.js"></script>
 <body>
 
+
 <script>
-    $.ajax({
-        type: 'GET',
-        url: '/projects',
-        // data to be added to query string:
-        data: { name: 'Zepto.js' },
-        // type of data we are expecting in return:
-        dataType: 'json',
-        timeout: 300,
-        context: $('body'),
-        success: function(data){
-            // Supposing this JSON payload was received:
-            //   {"project": {"id": 42, "html": "<div>..." }}
-            // append the HTML to context object.
-            this.append(data.project.html)
-        },
-        error: function(xhr, type){
-            alert('Ajax error!')
-        }
-    })
 
     var Ajax={
         get: function(url, fn) {
@@ -50,11 +31,27 @@
             };
             obj.send(data);
         }
+    };
+
+
+    // 测试获取 get 值
+    for (var i = 0; i < 10; i++) {
+        Ajax.get("/cacheget", function() {
+            console.log(arguments);
+        })
+    }
+
+    // 测试获取 set 值
+    for (var i = 0; i < 10; i++) {
+        Ajax.get("/cacheset", function() {
+            console.log(arguments);
+        })
     }
 
 
 
 </script>
+
 
 </body>
 </html>
