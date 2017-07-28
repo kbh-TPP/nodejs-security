@@ -1,3 +1,6 @@
+'use strict';
+
+
 module.exports = Config;
 
 // 中间件
@@ -148,16 +151,11 @@ Config.getDynamicConfig = function() {
 };
 
 
-
-
 // 服务初始化参数的设计
-
-
-
-
 
 // TAF配置文件变量
 Config.tafCfg = {};
+
 // TAF配置文件变量
 Config.prxCfg = {}; // 如果是taf 服务，就遵循出事花   
 

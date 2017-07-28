@@ -17,4 +17,8 @@
     http://127.0.0.1:8888/xss-1/reflected/wrong
     http://127.0.0.1:8888/xss-1/reflected/right
 
+
+    http://127.0.0.1:8888/
+
+
 ``` 
